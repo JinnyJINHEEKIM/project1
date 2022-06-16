@@ -29,5 +29,11 @@
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
     </bean>
+    
+     <!-- 패키지 -->
+
+ <context:component-scan base-package="com.jin.domain" />
+ <context:component-scan base-package="com.jin.dao" />
+ <context:component-scan base-package="com.jin.service" />
 		
 </beans>

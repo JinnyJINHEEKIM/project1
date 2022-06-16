@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jin.mappers.postMapper">
+   
+    <!-- 작성 -->
+ <insert id="write">
+  insert into pPost(bno, title, content, writer)
+      values (pPost_seq.nextval, #{title}, #{content}, #{writer})
+ </insert>
+ 
+ <!-- 조회 -->
+ <select id="read" resultType="com.jin.domain.PostVO">
+  select bno, title, content, writer, regDate, viewCnt
+   from pPost
+    where bno = #{bno}
+ </select>
+
+ <!-- 수정 --> 
+ <update id="update">
+  update pPost
+   set
+    title = #{title},
+    content = #{content}
+   where bno = #{bno}  
+ </update>
+ 
+ <!-- 삭제 -->
+ <delete id="delete">
+  delete from
+   pPost
+  where bno = #{bno}
+ </delete>
+ 
+</mapper>
