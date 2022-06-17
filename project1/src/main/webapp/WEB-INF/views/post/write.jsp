@@ -8,19 +8,16 @@
 
 <div id="root">
  <header>
-  <h1>글쓰기</h1>
+  <%@include file="include/header.jsp" %>
  </header>
 
-<hr />
- 
  <nav>
-  처음화면 - 글쓰기 - 로그인
+  <%@include file="include/nav.jsp" %>
  </nav>
 
-<hr />
 
  <section id="container">
- 
+  <h2>작성</h2>
   <form role="form" method="post" autocomplete="off">
    <p>
     <label for="title">글 제목</label><input type="text" id="title" name="title" />
@@ -38,10 +35,9 @@
 
  </section>
 
-<hr />
 
  <footer>
-  <p>남은 것 : 해시태그, 카카오 로그인, 답글</p>  
+  <%@include file="include/footer.jsp" %>
  </footer>
 
 </div>

@@ -43,7 +43,7 @@ public class PostController {
 	  
 	  service.write(vo);
 	  
-	  return "redirect:/";
+	  return "redirect:/post/list";
 	 }
 	 
 	 //목록조회
