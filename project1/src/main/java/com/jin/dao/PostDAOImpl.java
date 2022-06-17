@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.jin.domain.Criteria;
 import com.jin.domain.PostVO;
 
 @Repository
@@ -48,6 +49,20 @@ public class PostDAOImpl implements PostDAO {
 public List<PostVO> list() throws Exception {
 	// TODO Auto-generated method stub
 	return sql.selectList(namespace + ".list");
+}
+
+//목록 그리고 페이징
+@Override
+public List<PostVO> listPage(Criteria cri) throws Exception {
+	// TODO Auto-generated method stub
+	return sql.selectList(namespace + ".listPage", cri);
+}
+
+//총개수
+@Override
+public int listCount() throws Exception {
+	// TODO Auto-generated method stub
+	return sql.selectOne(namespace + ".listCount");
 }
 
 

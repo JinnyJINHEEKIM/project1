@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jin.domain.Criteria;
+import com.jin.domain.PageMaker;
 import com.jin.domain.PostVO;
 import com.jin.service.PostService;
 
@@ -46,6 +48,9 @@ public class PostController {
 	  return "redirect:/post/list";
 	 }
 	 
+	 
+	 
+	 
 	 //목록조회
 	 @RequestMapping(value = "/list", method = RequestMethod.GET)
 	 public void list(Model model) throws Exception {
@@ -58,6 +63,22 @@ public class PostController {
 	}
 	 
 	 
+	//글 목록 페이징
+		 @RequestMapping(value = "/listPage", method = RequestMethod.GET)
+		 public void listPage(Criteria cri, Model model) throws Exception {
+			 //모델 : 뷰로 전달하는 역할
+			 logger.info("get listPage");
+			 
+			 List<PostVO> list = service.listPage(cri);
+			 model.addAttribute("list", list); 
+			 
+			 PageMaker pm = new PageMaker();
+			 pm.setCri(cri);
+			 pm.setTotalCount(service.listCount());
+			 model.addAttribute("pageMaker", pm);
+		}
+	 
+	 
 	 // 글 조회
 	 @RequestMapping(value = "/read", method = RequestMethod.GET)
 	 public void getRead(@RequestParam("bno") int bno, Model model) throws Exception {
@@ -68,6 +89,9 @@ public class PostController {
 		 
 		 model.addAttribute("read", vo); 
 	}
+	 
+	 	 
+	 
 	 
 	// 글 수정 조회와 같음 이유는 작성된 게시글을 모두 가져와야 수정이 가능하기 때문
 	 @RequestMapping(value = "/modify", method = RequestMethod.GET)

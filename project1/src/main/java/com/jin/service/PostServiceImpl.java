@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.jin.dao.PostDAO;
+import com.jin.domain.Criteria;
 import com.jin.domain.PostVO;
 
 @Repository
@@ -47,6 +48,20 @@ public class PostServiceImpl implements PostService {
 public List<PostVO> list() throws Exception {
 	// TODO Auto-generated method stub
 	return dao.list();
+}
+
+//목록 그리고 페이징
+@Override
+public List<PostVO> listPage(Criteria cri) throws Exception {
+	// TODO Auto-generated method stub
+	return dao.listPage(cri);
+}
+
+//총개수
+@Override
+public int listCount() throws Exception {
+	// TODO Auto-generated method stub
+	return dao.listCount();
 }
 
 }

@@ -41,6 +41,30 @@
       from pPost
           order by bno desc
  </select>
+ 
+ <!-- 페이징   -->
+        
+<select id="listPage" resultType="com.jin.domain.PostVO" parameterType="com.jin.domain.Criteria">
+    select bno, title, content, writer, regDate, viewCnt
+       from (
+           select bno, title, content, writer, regDate, viewCnt,
+               row_number() over(order by bno desc) as rNum
+           from pPost
+     ) mb
+    where rNum between #{rowStart} and #{rowEnd}
+        order by bno desc
+</select>
+
+
+<!-- 총 게시물 표시 -->
+<select id ="listCount"  resultType="int">
+	<![CDATA[
+		select count(bno)
+			from pPost
+				where bno > 0
+	]]>
+</select>
+        
 
  
  
