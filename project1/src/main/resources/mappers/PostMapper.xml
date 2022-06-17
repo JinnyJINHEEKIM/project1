@@ -4,6 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jin.mappers.postMapper">
    
+   <!-- 쿼리, 메퍼, dao, service, controller, jsp 순서로 작성 -->
+   
     <!-- 작성 -->
  <insert id="write">
   insert into pPost(bno, title, content, writer)
@@ -32,5 +34,14 @@
    pPost
   where bno = #{bno}
  </delete>
+ 
+ <!-- 목록 -->
+ <select id="list" resultType="com.jin.domain.PostVO">
+  select bno, title, writer, regDate
+      from pPost
+          order by bno desc
+ </select>
+
+ 
  
 </mapper>

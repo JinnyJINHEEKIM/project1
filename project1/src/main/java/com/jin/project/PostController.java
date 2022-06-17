@@ -2,6 +2,7 @@ package com.jin.project;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -44,5 +45,13 @@ public class PostController {
 	  return "redirect:/";
 	 }
 	 
-	  
+	 //목록조회
+	 @RequestMapping(value = "/list", method = RequestMethod.GET)
+	 public void list(Model model) throws Exception { //모델 : 뷰로 전달하는 역할
+		 logger.info("get list");
+		 
+		 List<PostVO> list = service.list(); //변수 생성 후 모델에 추가
+		 
+		 model.addAttribute("list", list); //추가되는 명칭 list
 	}
+}

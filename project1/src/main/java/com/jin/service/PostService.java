@@ -1,5 +1,7 @@
 package com.jin.service;
 
+import java.util.List;
+
 import com.jin.domain.PostVO;
 
 public interface PostService {
@@ -16,4 +18,6 @@ public interface PostService {
 	 // 삭제
 	 public void delete(int bno) throws Exception;
 	 
+	 // 목록 조회
+	 public List<PostVO> list() throws Exception;
 	}

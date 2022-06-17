@@ -1,5 +1,7 @@
 package com.jin.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -39,5 +41,12 @@ public class PostServiceImpl implements PostService {
  public void delete(int bno) throws Exception {
   dao.delete(bno);
  }
+ 
+ //목록 조회
+@Override
+public List<PostVO> list() throws Exception {
+	// TODO Auto-generated method stub
+	return dao.list();
+}
 
 }

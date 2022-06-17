@@ -2,13 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
- <title>kuzuro 게시판</title>
+ <title>진로젝트</title>
 </head>
 <body>
 
 <div id="root">
  <header>
-  <h1>kuzuro 게시판</h1>
+  <h1>글쓰기</h1>
  </header>
 
 <hr />
@@ -41,7 +41,7 @@
 <hr />
 
  <footer>
-  <p>만든이 : kuzuro</p>  
+  <p>남은 것 : 해시태그, 카카오 로그인, 답글</p>  
  </footer>
 
 </div>
