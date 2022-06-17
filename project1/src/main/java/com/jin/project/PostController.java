@@ -66,7 +66,49 @@ public class PostController {
 		 
 		 PostVO vo = service.read(bno);
 		 
-		 model.addAttribute("read", vo); //추가되는 명칭 list
+		 model.addAttribute("read", vo); 
 	}
 	 
+	// 글 수정 조회와 같음 이유는 작성된 게시글을 모두 가져와야 수정이 가능하기 때문
+	 @RequestMapping(value = "/modify", method = RequestMethod.GET)
+	 public void getModify(@RequestParam("bno") int bno, Model model) throws Exception {
+		 //모델 : 뷰로 전달하는 역할
+		 logger.info("get modify");
+		 
+		 PostVO vo = service.read(bno);
+		 
+		 model.addAttribute("modify", vo); 
+	}
+	 
+	 
+	 //글 수정 post
+	 @RequestMapping(value = "/modify", method = RequestMethod.POST)
+	 public String postModify(PostVO vo) throws Exception { 
+		 logger.info("post modify");
+		 
+		 service.update(vo);
+		 
+		 return "redirect:/post/list";
+	 }
+	 
+	 
+	// 글 수정 조회와 같음 이유는 작성된 게시글을 모두 가져와야 수정이 가능하기 때문
+	 @RequestMapping(value = "/delete", method = RequestMethod.GET)
+	 public void getDelete(@RequestParam("bno") int bno, Model model) throws Exception {
+		 //모델 : 뷰로 전달하는 역할
+		 logger.info("get delete");
+		 
+		 
+		 model.addAttribute("delete", bno); // 삭제는 bno만 있으면 가능
+	}		
+	 
+	 //글 수정 post
+	 @RequestMapping(value = "/delete", method = RequestMethod.POST)
+	 public String postDelete(@RequestParam("bno") int bno) throws Exception { 
+		 logger.info("post delete");
+		 
+		 service.delete(bno);
+		 
+		 return "redirect:/post/list";
+	 }
 }
