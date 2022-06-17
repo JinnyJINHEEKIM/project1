@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jin.domain.PostVO;
 import com.jin.service.PostService;
@@ -47,11 +48,25 @@ public class PostController {
 	 
 	 //목록조회
 	 @RequestMapping(value = "/list", method = RequestMethod.GET)
-	 public void list(Model model) throws Exception { //모델 : 뷰로 전달하는 역할
+	 public void list(Model model) throws Exception {
+		 //모델 : 뷰로 전달하는 역할
 		 logger.info("get list");
 		 
 		 List<PostVO> list = service.list(); //변수 생성 후 모델에 추가
 		 
 		 model.addAttribute("list", list); //추가되는 명칭 list
 	}
+	 
+	 
+	 // 글 조회
+	 @RequestMapping(value = "/read", method = RequestMethod.GET)
+	 public void getRead(@RequestParam("bno") int bno, Model model) throws Exception {
+		 //모델 : 뷰로 전달하는 역할
+		 logger.info("get read");
+		 
+		 PostVO vo = service.read(bno);
+		 
+		 model.addAttribute("read", vo); //추가되는 명칭 list
+	}
+	 
 }
