@@ -66,6 +66,36 @@
 </select>
         
 
- 
+ <!-- 검색 -->
+        
+	<select id ="listSearch"  resultType="com.jin.domain.PostVO" parameterType="com.jin.domain.Criteria">
+		select bno, title, content, writer, regDate, viewCnt, likeCnt
+	    from(
+	        select bno, title, content, writer, regDate, viewCnt, likeCnt,
+	            ROW_NUMBER() OVER (ORDER BY bno desc) as rNum
+	        from pPost
+	            <include refid="search"></include>
+	        ) pp
+	    where rNum between 1 and 10
+	        order by bno desc
+	        </select>
+   <sql id = "search">
+   		<if test = "searchType != null">
+   			<if test = "searchType == 't'.toString()"> where title like '%' || #{keyword} || '%' </if>
+   			<if test = "searchType == 'c'.toString()"> where content like '%' || #{keyword} || '%' </if>
+   			<if test = "searchType == 'w'.toString()"> where writer like '%' || #{keyword} || '%' </if>
+   			<if test = "searchType == 'tc'.toString()"> where (title like '%' || #{keyword} || '%') or (content like '%' || #{keyword} || '%') </if>
+   		</if>    
+    </sql>    
+ <!-- 검색된 게시물 총 개수 -->
+ <select id ="countSearch"  resultType="int">
+	
+		select count(bno)
+			from pPost
+			<include refid="search"></include>
+				<![CDATA[
+				and bno > 0
+	]]>
+</select>
  
 </mapper>

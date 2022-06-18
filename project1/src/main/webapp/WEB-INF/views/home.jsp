@@ -12,6 +12,8 @@
 <a href="/post/write">글 작성</a>
 <a href="/post/list">글 목록</a>
 <a href="/post/listPage">글 목록 페이징</a>
+
+<a href="/post/listSearch">글 목록 검색</a>
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jin.domain.Criteria;
 import com.jin.domain.PageMaker;
 import com.jin.domain.PostVO;
+import com.jin.domain.SearchCriteria;
 import com.jin.service.PostService;
 
 /**
@@ -64,18 +66,34 @@ public class PostController {
 	 
 	 
 	//글 목록 페이징
-		 @RequestMapping(value = "/listPage", method = RequestMethod.GET)
-		 public void listPage(Criteria cri, Model model) throws Exception {
-			 //모델 : 뷰로 전달하는 역할
-			 logger.info("get listPage");
+	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
+	public void listPage(Criteria cri, Model model) throws Exception {
+		 //모델 : 뷰로 전달하는 역할
+		 logger.info("get listPage");
 			 
-			 List<PostVO> list = service.listPage(cri);
-			 model.addAttribute("list", list); 
+		 List<PostVO> list = service.listPage(cri);
+		 model.addAttribute("list", list); 
 			 
-			 PageMaker pm = new PageMaker();
-			 pm.setCri(cri);
-			 pm.setTotalCount(service.listCount());
-			 model.addAttribute("pageMaker", pm);
+		 PageMaker pm = new PageMaker();
+		 pm.setCri(cri);
+		 pm.setTotalCount(service.listCount());
+		 model.addAttribute("pageMaker", pm);
+		}
+		 
+	//글 목록 페이징
+	 @RequestMapping(value = "/listSearch", method = RequestMethod.GET)
+	 public void listSearch(@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
+		 //모델 : 뷰로 전달하는 역할
+		 logger.info("get listSearch");
+			 
+		 List<PostVO> list = service.listSearch(scri);
+		 model.addAttribute("list", list); 
+			 
+		 PageMaker pm = new PageMaker();
+		 pm.setCri(scri);
+		 pm.setTotalCount(service.listCount());
+		 model.addAttribute("pageMaker", pm);
+		 
 		}
 	 
 	 
@@ -135,4 +153,6 @@ public class PostController {
 		 
 		 return "redirect:/post/list";
 	 }
+	 
+	 
 }

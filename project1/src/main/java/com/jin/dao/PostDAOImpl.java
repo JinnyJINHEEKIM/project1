@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jin.domain.Criteria;
 import com.jin.domain.PostVO;
+import com.jin.domain.SearchCriteria;
 
 @Repository
 public class PostDAOImpl implements PostDAO {
@@ -63,6 +64,18 @@ public List<PostVO> listPage(Criteria cri) throws Exception {
 public int listCount() throws Exception {
 	// TODO Auto-generated method stub
 	return sql.selectOne(namespace + ".listCount");
+}
+
+@Override
+public List<PostVO> listSearch(SearchCriteria scri) throws Exception {
+	// TODO Auto-generated method stub
+	return sql.selectList(namespace + ".listSearch", scri);
+}
+
+@Override
+public int countSearch(SearchCriteria scri) throws Exception {
+	// TODO Auto-generated method stub
+	return sql.selectOne(namespace + ".countSearch", scri);
 }
 
 

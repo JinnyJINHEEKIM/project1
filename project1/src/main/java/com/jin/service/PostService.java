@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jin.domain.Criteria;
 import com.jin.domain.PostVO;
+import com.jin.domain.SearchCriteria;
 
 public interface PostService {
 	 
@@ -26,5 +27,11 @@ public interface PostService {
 	public List<PostVO> listPage(Criteria cri) throws Exception;
 	
 	//총 개수 확인
-		 public int listCount() throws Exception;
+	public int listCount() throws Exception;
+		 
+	//검색
+	public List<PostVO> listSearch(SearchCriteria scri) throws Exception;
+		 
+	//검색 결과 개수
+	public int countSearch(SearchCriteria scri) throws Exception;		 
 	}
