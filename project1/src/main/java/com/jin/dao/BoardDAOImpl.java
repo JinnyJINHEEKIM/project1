@@ -13,7 +13,7 @@ import com.jin.domain.SearchCriteria;
 
 
 @Repository
-public class BoardDAOImple implements BoardDAO {
+public class BoardDAOImpl implements BoardDAO {
 
 	
 	// 마이바티스 

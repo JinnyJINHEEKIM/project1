@@ -12,7 +12,7 @@ import com.jin.domain.Criteria;
 import com.jin.domain.SearchCriteria;
 
 @Service
-public class BoardServiceImple implements BoardService {
+public class BoardServiceImpl implements BoardService {
 
 	@Inject
 	private BoardDAO dao;

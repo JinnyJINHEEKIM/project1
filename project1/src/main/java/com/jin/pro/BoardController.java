@@ -21,8 +21,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.jin.domain.BoardVO;
 import com.jin.domain.Criteria;
 import com.jin.domain.PageMaker;
+import com.jin.domain.ReplyVO;
 import com.jin.domain.SearchCriteria;
 import com.jin.service.BoardService;
+import com.jin.service.ReplyService;
 
 /**
  * Handles requests for the application home page.
@@ -35,6 +37,9 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 	
 	@Inject
 	BoardService service;
+	
+	@Inject
+	ReplyService RepService;
 	
 	
 	// 글 작성 get
@@ -80,6 +85,8 @@ if(loginInfo == null) {
 		model.addAttribute("read", vo);		
 		model.addAttribute("scri", scri);
 		
+		List<ReplyVO> repList = RepService.readReply(bno);
+		model.addAttribute("repList", repList);
 	}	
 	
 	// 글 수 정

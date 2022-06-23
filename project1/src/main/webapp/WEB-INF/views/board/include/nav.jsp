@@ -6,5 +6,5 @@
 <li><a href="/board/list">글 목록</a></li>
 <li><a href="/board/listPage">글 목록+페이지</a></li>
 <li><a href="/board/listSearch">글 목록+페이지+목록</a></li>
-<li><a href="">로그인</a></li>
+<li><a href="/">로그인</a></li>
 </ul>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jin.mappers.memberMapper">
+    
+    <!-- 회원 가입 -->
+    <insert id="register">
+    	insert into pMember(userId, userPass, userName)
+    		values(#{userId}, #{userPass}, #{userName})    
+    </insert>
+
+	<!-- 로그인 -->
+	<select id="login" resultType="com.jin.domain.MemberVO">
+		select
+		    userId, userName, userPass
+		from
+		    pMember
+		where userId = #{userId}
+		    and userPass = #{userPass}
+	</select>
+	
+<!-- 회원정보 수정 -->	
+<update id="modify">
+	update pMember
+		set
+			userPass = #{userPass}
+		where userName = #{userName}		
+</update>
+	
+<!-- 회원 탈퇴 -->
+<delete id="withdrawal">
+	delete from pMember
+	    where userId = #{userId}
+	        and userPass = #{userPass}
+</delete>
+
+</mapper>
